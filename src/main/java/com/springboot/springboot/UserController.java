@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @RestController
 public class UserController {
 
@@ -22,17 +24,17 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/users")
+    @RequestMapping(method = POST, value = "/users")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
+    @RequestMapping(method = PUT, value = "/users/{id}")
     public void updateUser(@RequestBody User user, @PathVariable("id") int id){
         userService.updateUser(user,id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/users")
+    @RequestMapping(method = DELETE, value = "/users")
     public void deleteUser(@RequestBody User user){
         userService.deleteUser(user);
     }
