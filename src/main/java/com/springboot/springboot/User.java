@@ -1,12 +1,19 @@
 package com.springboot.springboot;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
     private int id;
-
     private String name;
 
-    public User() {
+    User(){
+
     }
 
     public User(int id, String name) {
