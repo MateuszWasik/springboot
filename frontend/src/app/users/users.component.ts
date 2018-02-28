@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-users',
@@ -8,7 +7,7 @@ import {Observable} from "rxjs/Observable";
     <h1>Users</h1>
     <ul>
     <li *ngFor="let user of users">
-      {{user | json}}
+      {{user.id}} {{user.name}}
     </li>
     </ul>
 `})
@@ -17,24 +16,15 @@ export class UsersComponent implements OnInit {
 
   users: Array<string>
 
-  theDataSource: Observable<string>;
+  user = [{id: 1, name : "temporary"}, {id: 2, name: "temp"}];
 
   constructor(private http: Http) {
 
-    this.theDataSource = this.http.get('/users').map(r => r.json())
   }
 
   ngOnInit() {
 
-    this.theDataSource.subscribe(
-      data => {
-        if (Array.isArray(data)) {
-          this.users = data;
-        } else {
-          this.users.push();
-        }
-      }
-    )
+    this.http.get('/users').toPromise().then(r => r.json()).then(r=> this.user = r);
   }
 
 }
