@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {dataservice} from "../dataservice/dataservice";
 
 @Component({
   selector: 'app-form',
@@ -8,14 +9,13 @@ import {Component, OnInit} from '@angular/core';
 export class FormComponent implements OnInit {
 
   username: string;
-  userid: number;
 
-  constructor(){
+  constructor(private dataservice: dataservice){
 
   }
 
-  onSubmit(user) {
-    console.log(user.value);
+  onSubmit(username) {
+    this.dataservice.addUserService(username);
   }
 
   ngOnInit() {

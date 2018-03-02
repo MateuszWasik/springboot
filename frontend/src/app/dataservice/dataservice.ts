@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user";
 import {Observable} from "rxjs/Observable";
 
@@ -12,6 +12,12 @@ export class dataservice {
 
   }
 
+  addUserService(username: String){
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.usersUrl, username, {headers})
+      .subscribe(data => console.log(data))
+  }
+
   getUsersService(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
@@ -20,9 +26,9 @@ export class dataservice {
     return this.http.put(this.usersUrl + "/", id);
   }
 
-  deleteUserService(id: number): Observable<User> {
-    console.log(this.usersUrl+"/"+id)
-    return this.http.delete<User>(this.usersUrl + "/" + id);
+  deleteUserService(id: number){
+    return this.http.delete(this.usersUrl + "/" + id)
+      .subscribe(data => console.log(data))
   }
 
 
