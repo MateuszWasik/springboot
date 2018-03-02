@@ -26,6 +26,8 @@ public class UserController {
 
     @RequestMapping(method = POST, value = "/users")
     public void addUser(@RequestBody User user) {
+        int id = getAllUsers().size() + 1;
+        user.setId(id);
         userService.addUser(user);
     }
 

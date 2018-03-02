@@ -7,6 +7,10 @@ import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import {routes} from "./app.routes";
 import {RouterModule} from "@angular/router";
+import { FormComponent } from './form/form.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {dataservice} from "./dataservice/dataservice";
 
 
 @NgModule({
@@ -14,14 +18,18 @@ import {RouterModule} from "@angular/router";
     AppComponent,
     NavComponent,
     UsersComponent,
-    HomeComponent
+    HomeComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [dataservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

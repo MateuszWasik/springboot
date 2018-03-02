@@ -1,0 +1,8 @@
+<form class="container"
+      (ngSubmit)="onSubmit(userForm.value)" #userForm = "ngForm">
+  <label>ID</label>
+  <input type="number" class="form-control" required [(ngModel)]="userid" name="userid">
+  <label>Name</label>
+  <input type="text" class="form-control" required [(ngModel)]="username" name="username">
+  <button type="submit" value="submit">Submit</button>
+</form>
