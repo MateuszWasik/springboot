@@ -12,9 +12,9 @@ export class dataservice {
 
   }
 
-  addUserService(username: String){
+  addUserService(username: User){
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.usersUrl, username, {headers})
+    return this.http.post(this.usersUrl, {name: username}, {headers})
       .subscribe(data => console.log(data))
   }
 
