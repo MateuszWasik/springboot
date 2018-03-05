@@ -2,6 +2,7 @@ package com.springboot.springboot;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @RequestMapping(method = PUT, value = "/users/{id}")
+    @RequestMapping(method = PUT, value = "/users/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
         userService.updateUser(user, id);
     }

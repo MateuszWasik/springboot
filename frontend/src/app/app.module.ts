@@ -27,7 +27,6 @@ import {dataservice} from "./dataservice/dataservice";
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
-    HttpModule,
   ],
   providers: [dataservice],
   bootstrap: [AppComponent]

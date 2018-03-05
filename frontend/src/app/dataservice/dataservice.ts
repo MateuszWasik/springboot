@@ -28,8 +28,8 @@ export class dataservice {
 
   deleteUserService(id: number){
     return this.http.delete(this.usersUrl + "/" + id)
-      .subscribe(data => console.log(data))
-  }
-
-
+      .subscribe(
+        data => {
+          this.getUsersService();
+        })};
 }

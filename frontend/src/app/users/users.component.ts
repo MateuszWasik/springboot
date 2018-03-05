@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {User} from "../models/user";
 import {dataservice} from "../dataservice/dataservice";
+import {NgForm} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -17,11 +19,11 @@ import {dataservice} from "../dataservice/dataservice";
         <td>{{user.name}}</td>
         <td>
           <button type="button" class="btn btn-warning" (click)="editUser(user.id)">Edit</button>
+
           <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
         </td>
       </tr>
     </table>
-
   `
 })
 
@@ -36,7 +38,7 @@ export class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers(): void {
+  getUsers(): void  {
     this.dataservice.getUsersService()
       .subscribe(
         resultArray => this.users = resultArray
@@ -44,11 +46,13 @@ export class UsersComponent implements OnInit {
   }
 
     editUser(id : number) {
-      this.dataservice.deleteUserService(id);
+      return this.dataservice.editUserService(id);
     }
 
   deleteUser(id: number) {
     this.dataservice.deleteUserService(id);
+    return this.getUsers();
+
   }
 
 }
