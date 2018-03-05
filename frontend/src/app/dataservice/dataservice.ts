@@ -22,14 +22,12 @@ export class dataservice {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  editUserService(id: number) {
-    return this.http.put(this.usersUrl + "/", id);
+  editUserService(id: number, username: User) {
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(this.usersUrl + "/" + id, {name: username},{headers}).toPromise();
   }
 
   deleteUserService(id: number){
     return this.http.delete(this.usersUrl + "/" + id)
-      .subscribe(
-        data => {
-          this.getUsersService();
-        })};
+      .toPromise()}
 }

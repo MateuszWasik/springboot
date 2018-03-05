@@ -1,0 +1,8 @@
+<form #myForm="ngForm">
+  <br>
+  <label>Edit User</label>
+  <input type="text" class="form-control" required [(ngModel)]="username" name="username">
+  <br>
+  <button class="btn btn-success" value="submit"  (click)="onSave(username)">Save</button>
+  <button class="btn btn-info" (click)="goToUsers()">Back</button>
+</form>

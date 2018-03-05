@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {User} from "../models/user";
 import {dataservice} from "../dataservice/dataservice";
 import {NgForm} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
+import {UserEditComponent} from "./user-edit/user-edit.component";
 
 
 @Component({
@@ -24,6 +25,7 @@ import {ActivatedRoute} from "@angular/router";
         </td>
       </tr>
     </table>
+    <button type="button" class="btn btn-success" (click)="toForm()">Add new</button>
   `
 })
 
@@ -31,28 +33,30 @@ export class UsersComponent implements OnInit {
 
   users: User[];
 
-  constructor(private dataservice: dataservice) {
+  constructor(private dataservice: dataservice, private router: Router) {
   }
 
   ngOnInit() {
     this.getUsers();
   }
 
-  getUsers(): void  {
+  getUsers(): void {
     this.dataservice.getUsersService()
       .subscribe(
         resultArray => this.users = resultArray
       )
   }
 
-    editUser(id : number) {
-      return this.dataservice.editUserService(id);
-    }
-
-  deleteUser(id: number) {
-    this.dataservice.deleteUserService(id);
-    return this.getUsers();
-
+  editUser(id: number) {
+    this.router.navigate(['/edit'], {queryParams: { order: id}})
   }
 
+  deleteUser(id: number) {
+    this.dataservice.deleteUserService(id).then(res => this.getUsers())
+  }
+
+  toForm() {
+    this.router.navigateByUrl('/form');
+  }
 }
+

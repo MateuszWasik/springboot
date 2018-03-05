@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {dataservice} from "../dataservice/dataservice";
 import {NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-form',
@@ -14,13 +15,14 @@ export class FormComponent implements OnInit {
   @ViewChild('myForm')
   private myForm: NgForm;
 
-  constructor(private dataservice: dataservice){
+  constructor(private dataservice: dataservice, private router: Router){
 
   }
 
   onSubmit(username) {
     this.dataservice.addUserService(username);
     this.myForm.reset();
+    this.router.navigateByUrl('/users');
   }
 
   ngOnInit() {

@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {dataservice} from "./dataservice/dataservice";
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {dataservice} from "./dataservice/dataservice";
     UsersComponent,
     HomeComponent,
     FormComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
