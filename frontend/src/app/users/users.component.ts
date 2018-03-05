@@ -58,5 +58,9 @@ export class UsersComponent implements OnInit {
   toForm() {
     this.router.navigateByUrl('/form');
   }
+
+  toUsers(){
+    this.router.navigateByUrl('/users');
+  }
 }
 
