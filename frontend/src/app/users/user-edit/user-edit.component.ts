@@ -9,13 +9,13 @@ import {dataservice} from "../../dataservice/dataservice";
 })
 export class UserEditComponent implements OnInit {
 
-  userId : number;
+  userId;
 
   constructor(private router: Router, private dataservice: dataservice, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-
+    this.userId = parseInt(this.route.snapshot.queryParamMap.get('order'));
   }
 
   goToUsers() {
@@ -23,7 +23,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onSave(username){
-
+    console.log(this.userId);
     this.dataservice.editUserService(this.userId, username).then(res => this.goToUsers())}
 
 
