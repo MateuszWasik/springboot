@@ -10,6 +10,7 @@ import {dataservice} from "../../dataservice/dataservice";
 export class UserEditComponent implements OnInit {
 
   userId;
+  username;
 
   constructor(private router: Router, private dataservice: dataservice, private route: ActivatedRoute) {
   }

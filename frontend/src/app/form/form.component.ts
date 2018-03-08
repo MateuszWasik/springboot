@@ -25,6 +25,10 @@ export class FormComponent implements OnInit {
     this.router.navigateByUrl('/users');
   }
 
+  toUsers(){
+    this.router.navigateByUrl('/users');
+  }
+
   ngOnInit() {
   }
 
